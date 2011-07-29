@@ -32,8 +32,10 @@ def calc_from_dep_day(today)
 
   if difference_dep_day_from_today > 45
     puts "スーパー旅割が適用されるかもしれません"
-  else
-    puts "旅割になっちゃいますね"
+  elsif difference_dep_day_from_today >= 28 && difference_dep_day_from_today < 45
+    puts "旅割が利用可能です"
+  elsif difference_dep_day_from_today < 28
+    puts "乗り継ぎ特割、特割、プレミアム特割が利用可能です"
   end
 end
 
