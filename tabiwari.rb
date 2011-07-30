@@ -7,7 +7,7 @@ selection = gets.chomp.to_i
 today = Date.today
 
 def disp_super_tabiwari(today)
-  p today + 45
+  puts (today + 45).strftime("%Y年%m月%d日") + "から旅割がご利用いただけます。"
 end
 
 def wrong_date
