@@ -10,6 +10,11 @@ def disp_super_tabiwari(today)
   p today + 45
 end
 
+def wrong_date
+  puts "wrong date format"
+  exit
+end
+
 def calc_from_dep_day(today)
   puts "搭乗する年を入力してください"
   dep_year = gets.chomp.to_i
@@ -21,8 +26,7 @@ def calc_from_dep_day(today)
   dep_day = gets.chomp.to_i
 
   unless Date.valid_date?(dep_year, dep_month, dep_day)
-    puts "wrong date format"
-    exit
+    wrong_date
   end
 
   departure = Date.new(dep_year, dep_month, dep_day)
@@ -32,6 +36,9 @@ def calc_from_dep_day(today)
 
   if difference_dep_day_from_today > 45
     puts "スーパー旅割が適用されるかもしれません"
+    if dep_month == 8|| dep_month == 12
+      puts "繁忙期に入ったら普通運賃しかないかもしれません…"
+    end
   elsif difference_dep_day_from_today >= 28 && difference_dep_day_from_today < 45
     puts "旅割が利用可能です"
   elsif difference_dep_day_from_today < 28
