@@ -11,19 +11,32 @@ def disp_super_tabiwari(today)
 end
 
 def wrong_date
-  puts "wrong date format"
-  exit
+  begin
+  rescue => e
+    puts "#{e.class}: #{e.message}"
+    puts e.backtrace.join("  \n")
+  end
+end
+
+def input_year
+  puts "搭乗する年を入力してください"
+  return gets.chomp.to_i
+end
+
+def input_month
+  puts "搭乗する月を入力してください"
+  return gets.chomp.to_i
+end
+
+def input_day
+  puts "搭乗する日を入力してください"
+  return gets.chomp.to_i
 end
 
 def calc_from_dep_day(today)
-  puts "搭乗する年を入力してください"
-  dep_year = gets.chomp.to_i
-
-  puts "搭乗する月を入力してください"
-  dep_month = gets.chomp.to_i
-
-  puts "搭乗する日を入力してください"
-  dep_day = gets.chomp.to_i
+  dep_year  = input_year()
+  dep_month = input_month() 
+  dep_day   = input_day()
 
   unless Date.valid_date?(dep_year, dep_month, dep_day)
     wrong_date
