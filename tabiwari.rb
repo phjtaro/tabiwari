@@ -1,6 +1,7 @@
 # coding: utf-8
 require 'date'
 
+#initial process
 puts "どの運賃が適用できるかなんとなく計算します"
 puts "1:搭乗する日から計算 2:今日から45日先(スーパー旅割)はいつか表示します"
 selection = gets.chomp.to_i
@@ -18,6 +19,7 @@ def wrong_date
   end
 end
 
+#入力系メソッドたち
 def input_year
   puts "搭乗する年を入力してください"
   return gets.chomp.to_i
@@ -34,6 +36,7 @@ def input_day
 end
 
 def calc_from_dep_day(today)
+#ここで一気に入力系のメソッドを呼び出す
   dep_year  = input_year()
   dep_month = input_month() 
   dep_day   = input_day()
