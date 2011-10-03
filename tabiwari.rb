@@ -35,6 +35,18 @@ def input_day
   return gets.chomp.to_i
 end
 
+#適用される運賃を判断するメソッド
+#表示も込みになってるのはよくないかな
+def decision_fee(difference_dep_day_from_today)
+  if difference_dep_day_from_today > 45
+    puts "スーパー旅割が適用されるかもしれません"
+  elsif difference_dep_day_from_today >= 28 && difference_dep_day_from_today < 45
+    puts "旅割が利用可能です"
+  elsif difference_dep_day_from_today < 28
+    puts "乗り継ぎ特割、特割、プレミアム特割が利用可能です"
+  end
+end
+
 def calc_from_dep_day(today)
 #ここで一気に入力系のメソッドを呼び出す
   dep_year  = input_year()
@@ -50,19 +62,14 @@ def calc_from_dep_day(today)
   difference_dep_day_from_today = (departure - today)
   p difference_dep_day_from_today
 
-  if difference_dep_day_from_today > 45
-    puts "スーパー旅割が適用されるかもしれません"
-    if dep_month == 8|| dep_month == 12
-      puts "繁忙期に入ったら普通運賃しかないかもしれません…"
-    end
-  elsif difference_dep_day_from_today >= 28 && difference_dep_day_from_today < 45
-    puts "旅割が利用可能です"
-  elsif difference_dep_day_from_today < 28
-    puts "乗り継ぎ特割、特割、プレミアム特割が利用可能です"
+#適用される運賃の判断を行う
+  decision_fee(difference_dep_day_from_today)
+  #decision_fee()でやりたかったが。
+  #dep_monthが読み取れないので、一時外に出しておく
+  if dep_month == 8|| dep_month == 12
+    puts "繁忙期に入ったら普通運賃しかないかもしれません…"
   end
 end
-
-
 
 if selection == 1
   calc_from_dep_day(today)
